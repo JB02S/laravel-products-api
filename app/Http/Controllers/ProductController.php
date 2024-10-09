@@ -15,6 +15,14 @@ class ProductController extends Controller
         return response()->json(Product::all(), 200);
     }   
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        return response()->json(Product::findOrFail($id));
+    }
+
     // Implement these later
 
     // /**
@@ -29,14 +37,6 @@ class ProductController extends Controller
     //  * Store a newly created resource in storage.
     //  */
     // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  */
-    // public function show(string $id)
     // {
     //     //
     // }
