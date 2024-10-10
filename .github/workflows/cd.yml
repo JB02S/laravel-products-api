@@ -1,0 +1,31 @@
+name: CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to AWS EC2
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+        run: |
+          echo "${SSH_PRIVATE_KEY}" > private_key.pem
+          chmod 600 private_key.pem
+
+          ssh -i private_key.pem ubuntu@ec2-3-10-198-148.eu-west-2.compute.amazonaws.com
+            
+            git pull origin main
+
+            php artisan migrate:refresh
+            
+            # Add a restart command here
