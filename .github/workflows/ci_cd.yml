@@ -10,7 +10,8 @@ on:
       - develop
 
 permissions:
-  actions: read    # Read access to check CI pipeline
+  actions: write
+  actions: read
 
 jobs:
   build:
