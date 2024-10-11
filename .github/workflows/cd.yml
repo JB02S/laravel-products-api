@@ -2,7 +2,10 @@ name: Deploy to AWS
 
 on:
   repository_dispatch:
-    types: [deploy]  # Listen for the deploy event type
+    types: [deploy]  # listen for the deploy event type
+
+permissions:
+  actions: read   # read access to check ci pipeline
 
 jobs:
   deploy:

@@ -10,8 +10,7 @@ on:
       - develop
 
 permissions:
-  contents: write
-  actions: read  
+  contents: write    # needs write access to create repo dispatch event to trigger cd pipeline
 
 jobs:
   build:
