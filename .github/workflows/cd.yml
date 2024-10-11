@@ -31,4 +31,6 @@ jobs:
             composer install
             php artisan migrate:refresh
 
+            php artisan serve
+
           EOF
