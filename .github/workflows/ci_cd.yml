@@ -10,7 +10,7 @@ on:
       - develop
 
 permissions:
-  actions: write
+  contents: write
   actions: read
 
 jobs:
