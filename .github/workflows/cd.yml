@@ -1,9 +1,8 @@
 name: Deploy to AWS
 
 on:
-  push:
-    branches:
-      - main
+  repository_dispatch:
+    types: [deploy]  # Listen for the deploy event type
 
 jobs:
   deploy:

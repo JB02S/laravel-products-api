@@ -27,3 +27,14 @@ jobs:
 
       - name: Run tests
         run: php artisan test  # dont have any tests yet
+      
+      - name: Trigger CD Pipeline
+        if: success() && github.ref == 'refs/heads/main'  # Only trigger if on main branch and CI passes
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.repos.createDispatchEvent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event_type: 'deploy'
+            })
