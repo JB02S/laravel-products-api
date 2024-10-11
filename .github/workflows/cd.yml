@@ -25,6 +25,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@${EC2_HOST} << 'EOF'
             
             git pull origin main
+            cd laravel-products-api
 
             php artisan migrate:refresh
 
