@@ -1,4 +1,4 @@
-name: CD Pipeline
+name: Deploy to AWS
 
 on:
   push:
@@ -22,10 +22,10 @@ jobs:
           echo "${SSH_PRIVATE_KEY}" > private_key.pem
           chmod 600 private_key.pem
 
-          ssh -i private_key.pem ubuntu@ec2-3-10-198-148.eu-west-2.compute.amazonaws.com
+          ssh -i private_key.pem ubuntu@${EC2_HOST} << 'EOF'
             
             git pull origin main
 
             php artisan migrate:refresh
             
-            # Add a restart command here
+          EOF
