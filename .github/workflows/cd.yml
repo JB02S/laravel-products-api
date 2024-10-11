@@ -23,9 +23,11 @@ jobs:
           chmod 600 private_key.pem
 
           ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@${EC2_HOST} << 'EOF'
+
+            cd laravel-products-api
             
             git pull origin main
-            cd laravel-products-api
+            
 
             php artisan migrate:refresh
 
