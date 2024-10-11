@@ -10,7 +10,7 @@ on:
       - develop
 
 permissions:
-  contents: write
+  actions: write
   actions: read
 
 jobs:
@@ -53,7 +53,11 @@ jobs:
 
           ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@${EC2_HOST} << 'EOF'
             cd laravel-products-api
-            git pull origin main
+
+            if ! git pull origin main; then
+              echo "Failed to pull from main branch. Exiting deployment."
+              exit 1  # Exit the script with a non-zero status
+            fi
 
             composer install --no-dev
             php artisan migrate --force
