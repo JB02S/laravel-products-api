@@ -28,7 +28,7 @@ jobs:
             cd laravel-products-api
             
             git pull origin main
-            
+            composer install
             php artisan migrate:refresh
 
           EOF
