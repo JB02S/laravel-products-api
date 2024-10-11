@@ -33,6 +33,5 @@ jobs:
 
             sudo supervisorctl restart laravel-products-api
 
-            sudo supervisorctl status laravel-products-api >> /var/log/deploy.log
 
           EOF
