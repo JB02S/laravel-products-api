@@ -23,14 +23,16 @@ jobs:
           chmod 600 private_key.pem
 
           ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@${EC2_HOST} << 'EOF'
+
             eval "$(ssh-agent -s)"
             ssh-add ~/.ssh/id_ed25519_gh
+
             cd laravel-products-api
-            
             git pull origin main
+
             composer install
             php artisan migrate:refresh
 
-            php artisan serve
+            sudo supervisorctl restart laravel-products-api
 
           EOF
