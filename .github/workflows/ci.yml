@@ -9,6 +9,10 @@ on:
       - main
       - develop
 
+permissions:
+  contents: write
+  actions: read  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,7 +33,7 @@ jobs:
         run: php artisan test  # dont have any tests yet
       
       - name: Trigger CD Pipeline
-        if: success() && github.ref == 'refs/heads/main'  # Only trigger if on main branch and CI passes
+        if: success() && github.ref == 'refs/heads/main'  # only trigger if on main branch and CI passes
         uses: actions/github-script@v6
         with:
           script: |
