@@ -8,6 +8,16 @@ permissions:
   actions: read   # read access to check ci pipeline
 
 jobs:
+
+  # in real world scenario would most likely just use one cicd yaml file but want to experiment, need this dummy job for the gh actions graph to look nice
+  
+  initialize:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Initialize Workflow
+        run: echo "Workflow Initialized"
+
   deploy:
     runs-on: ubuntu-latest
     needs: [build]
